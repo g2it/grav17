@@ -35,7 +35,7 @@ jobs:
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: php-app
           path: release.zip
@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: php-app
 
@@ -59,14 +59,14 @@ jobs:
         run: unzip release.zip
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B8D3AFE4E1D341248BBBD6B0D239EEE8 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_988C03D4BD8941D6A385D740F6FB7A88 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_952C0E8AF57043DD99E02EC515FF9E42 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FF67985CF863416B8E758B075C6D88A6 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3F91C28B47514B3E80756F5C2AC1BE67 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_534B082423944AE7A02A3F9074D52F32 }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'g2it'
